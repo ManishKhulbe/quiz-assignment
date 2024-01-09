@@ -1,0 +1,948 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "BookMyShow",
+    "description": "This is a sample server Petstore server.  You can find out more about Swagger at [http://swagger.io](http://swagger.io) or on [irc.freenode.net, #swagger](http://swagger.io/irc/).  For this sample, you can use the api key `special-key` to test the authorization filters.",
+    "contact": {
+      "email": ""
+    },
+    "version": "1.0.0",
+    "termsOfService": "http://swagger.io/terms/",
+    "license": {
+      "name": "Apache 2.0",
+      "url": "http://www.apache.org/licenses/LICENSE-2.0.html"
+    }
+  },
+  "basePath": "/index",
+  "tags": [
+    {
+      "name": "User",
+      "description": "Operations about user",
+      "externalDocs": {
+        "description": "Find out more about our store",
+        "url": ""
+      }
+    },
+    {
+      "name": "Movie",
+      "description": "Operations about Bookings",
+      "externalDocs": {
+        "description": "Find out more about our store",
+        "url": "http://swagger.io"
+      }
+    },
+    {
+      "name": "Cinema",
+      "description": "Operations about Bookings",
+      "externalDocs": {
+        "description": "Find out more about our store",
+        "url": "http://swagger.io"
+      }
+    },
+    {
+      "name": "Screen",
+      "description": "Screen for Cinema ",
+      "externalDocs": {
+        "description": "Find out more about our store",
+        "url": "http://swagger.io"
+      }
+    },
+    {
+      "name": "Booking",
+      "description": "Operations about Bookings",
+      "externalDocs": {
+        "description": "Find out more about our store",
+        "url": "http://swagger.io"
+      }
+    },
+    {
+      "name": "Admin",
+      "description": "Operations about user",
+      "externalDocs": {
+        "description": "Find out more about our store",
+        "url": "http://swagger.io"
+      }
+    }
+  ],
+  "schemes": [
+    "http",
+    "https"
+  ],
+  "consumes": [
+    "application/json",
+    "application/x-www-form-urlencoded",
+    "multipart/form-data"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {
+    "/user/signUp": {
+      "post": {
+        "deprecated": false,
+        "tags": [
+          "User"
+        ],
+        "description": "SignUp User ",
+        "consumes": [
+          "application/x-www-form-urlencoded"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "UserName",
+            "in": "formData",
+            "description": "username",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "email",
+            "in": "formData",
+            "description": "email",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "password",
+            "in": "formData",
+            "description": "password",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "gender",
+            "in": "formData",
+            "description": "0 Undefined, 1 Male, 2 Female, 3 Others",
+            "enum": [
+              0,
+              1,
+              2,
+              3
+            ],
+            "type": "integer"
+          }
+
+        ],  "responses": {
+          "200": {
+            "description": "Successfully"
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        },
+
+  "security": [
+          {
+            "basicAuth": ["Username: ", "Password: "]
+          }
+        ]
+
+      }
+    },
+    "/user/logIn": {
+      "post": {
+        "deprecated": false,
+        "tags": [
+          "User"
+        ],
+        "description": "LogIn User ",
+        "consumes": [
+          "application/x-www-form-urlencoded"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "email",
+            "in": "formData",
+            "description": "User's Unique Email",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "password",
+            "in": "formData",
+            "description": "User's Password",
+            "required": true,
+            "type": "string"
+          }
+        ], 
+         "responses": {
+          "200": {
+            "description": "Successfully"
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        },
+
+  "security": [
+          {
+            "basicAuth": ["Username: ", "Password: "]
+          }
+        ]
+
+      }
+    },
+    "/user/logOut": {
+      "post": {
+        "deprecated": false,
+        "tags": [
+          "User"
+        ],
+        "description": "LogOUT User ",
+        "consumes": [
+          "application/x-www-form-urlencoded"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "AccessToken",
+            "in": "header",
+            "description": "Current Session's AccessToken",
+            "required": true,
+            "type": "string"
+          }
+        ], 
+         "responses": {
+          "200": {
+            "description": "Successfully"
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        },
+
+  "security": [
+          {
+            "basicAuth": ["Username: ", "Password: "]
+          }
+        ]
+
+      }
+    },
+    "/movie/addMovie": {
+      "post": {
+        "deprecated": false,
+        "tags": [
+          "Movie"
+        ],
+        "description": "Operations on Movies ",
+        "consumes": [
+          "application/x-www-form-urlencoded"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "AccessToken",
+            "in": "header",
+            "description": "Current Session's AccessToken",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "title",
+            "in": "formData",
+            "description": "Movie Title",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "desc",
+            "in": "formData",
+            "description": "Description of Movie",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "cast",
+            "in": "formData",
+            "description": "Cast of the movie",
+            "required": true,
+            "type": "string"
+          }
+          
+
+        ], 
+         "responses": {
+          "200": {
+            "description": "Successfully"
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        },
+
+  "security": [
+          {
+            "basicAuth": ["Username: ", "Password: "]
+          }
+        ]
+
+      }
+    },
+    "/movie/getMovie": {
+      "get": {
+        "deprecated": false,
+        "tags": [
+          "Movie"
+        ],
+        "description": "Operations on Movies ",
+        "consumes": [
+          "application/x-www-form-urlencoded"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "AccessToken",
+            "in": "header",
+            "description": "Current Session's AccessToken",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "MovieId",
+            "in": "query",
+            "description": "Movie Id",
+            "required": true,
+            "type": "string"
+          } 
+
+        ], 
+         "responses": {
+          "200": {
+            "description": "Successfully"
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        },
+
+  "security": [
+          {
+            "basicAuth": ["Username: ", "Password: "]
+          }
+        ]
+
+      }
+    },
+    "/movie/updateMovie": {
+      "put": {
+        "deprecated": false,
+        "tags": [
+          "Movie"
+        ],
+        "description": "Operations on Movies ",
+        "consumes": [
+          "application/x-www-form-urlencoded"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "AccessToken",
+            "in": "header",
+            "description": "Current Session's AccessToken",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "MovieId",
+            "in": "query",
+            "description": "Movie Id",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "title",
+            "in": "formData",
+            "description": "Movie Title",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "desc",
+            "in": "formData",
+            "description": "Description of Movie",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "cast",
+            "in": "formData",
+            "description": "Cast of the movie",
+            "required": true,
+            "type": "string"
+          }
+
+
+        ], 
+         "responses": {
+          "200": {
+            "description": "Successfully"
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        },
+
+  "security": [
+          {
+            "basicAuth": ["Username: ", "Password: "]
+          }
+        ]
+
+      }
+    },
+    "/movie/deleteMovie": {
+      "delete": {
+        "deprecated": false,
+        "tags": [
+          "Movie"
+        ],
+        "description": "Operations on Movies ",
+        "consumes": [
+          "application/x-www-form-urlencoded"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "AccessToken",
+            "in": "header",
+            "description": "Current Session's AccessToken",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "MovieId",
+            "in": "query",
+            "description": "Movie Id",
+            "required": true,
+            "type": "string"
+          } 
+
+        ], 
+         "responses": {
+          "200": {
+            "description": "Successfully"
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        },
+
+  "security": [
+          {
+            "basicAuth": ["Username: ", "Password: "]
+          }
+        ]
+
+      }
+    },
+
+    "/cinema/addCinema": {
+      "post": {
+        "deprecated": false,
+        "tags": [
+          "Cinema"
+        ],
+        "description": "Operations on Cinema ",
+        "consumes": [
+          "application/x-www-form-urlencoded"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "AccessToken",
+            "in": "header",
+            "description": "Current Session's AccessToken",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "name",
+            "in": "formData",
+            "description": "Cinema Hall Name ",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "location",
+            "in": "formData",
+            "description": "Cinema Hall Location ",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "city",
+            "in": "formData",
+            "description": "Cinema Hall City",
+            "type": "string"
+          } 
+
+        ], 
+         "responses": {
+          "200": {
+            "description": "Successfully"
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        },
+
+  "security": [
+          {
+            "basicAuth": ["Username: ", "Password: "]
+          }
+        ]
+
+      }
+    },
+    "/cinema/updateCinema": {
+      "put": {
+        "deprecated": false,
+        "tags": [
+          "Cinema"
+        ],
+        "description": "Operations on Cinema ",
+        "consumes": [
+          "application/x-www-form-urlencoded"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "AccessToken",
+            "in": "header",
+            "description": "Current Session's AccessToken",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "CinemaId",
+            "in": "query",
+            "description": "Current cinemaId",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "name",
+            "in": "formData",
+            "description": "Cinema Hall Name ",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "location",
+            "in": "formData",
+            "description": "Cinema Hall Location ",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "city",
+            "in": "formData",
+            "description": "Cinema Hall City",
+            "type": "string"
+          } 
+
+        ], 
+         "responses": {
+          "200": {
+            "description": "Successfully"
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        },
+
+  "security": [
+          {
+            "basicAuth": ["Username: ", "Password: "]
+          }
+        ]
+
+      }
+    },
+    "/cinema/cinemaInfo": {
+      "get": {
+        "deprecated": false,
+        "tags": [
+          "Cinema"
+        ],
+        "description": "Operations on Cinema ",
+        "consumes": [
+          "application/x-www-form-urlencoded"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "AccessToken",
+            "in": "header",
+            "description": "Current Session's AccessToken",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "cinemaId",
+            "in": "query",
+            "description": "cinema id ",
+            "required": true,
+            "type": "string"
+          }
+        ], 
+         "responses": {
+          "200": {
+            "description": "Successfully"
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        },
+
+  "security": [
+          {
+            "basicAuth": ["Username: ", "Password: "]
+          }
+        ]
+
+      }
+    },
+
+
+    "/screen/addScreen": {
+      "post": {
+        "deprecated": false,
+        "tags": [
+          "Screen"
+        ],
+        "description": "Operations on Cinema ",
+        "consumes": [
+          "application/x-www-form-urlencoded"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "AccessToken",
+            "in": "header",
+            "description": "Current Session's AccessToken",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "name",
+            "in": "formData",
+            "description": "Screen Name ",
+            "type": "string"
+          },
+          {
+            "name": "screenNo",
+            "in": "formData",
+            "description": "screen Number",
+            "type": "integer"
+          },
+          {
+            "name": "noOfSeats",
+            "in": "formData",
+            "description": "String Format  [ {'no':1 , 'isBooked' : 0}, {'no':2 , 'isBooked' : 0} ] , Use double quotes instead of single quotes ",
+            "type": "string"
+          } ,
+          {
+            "name": "cinemaId",
+            "in": "formData",
+            "description": "No of Seats for a screen",
+            "type": "string"
+          } ,
+          {
+            "name": "movieId",
+            "in": "formData",
+            "description": "Movie running on screen",
+            "type": "string"
+          } 
+
+        ], 
+         "responses": {
+          "200": {
+            "description": "Successfully"
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        },
+
+  "security": [
+          {
+            "basicAuth": ["Username: ", "Password: "]
+          }
+        ]
+
+      }
+    },
+    "/screen/getScreen": {
+      "get": {
+        "deprecated": false,
+        "tags": [
+          "Screen"
+        ],
+        "description": "Operations on Cinema ",
+        "consumes": [
+          "application/x-www-form-urlencoded"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "AccessToken",
+            "in": "header",
+            "description": "Current Session's AccessToken",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "screenId",
+            "in": "query",
+            "description": "screenid",
+            "required": true,
+            "type": "string"
+          }
+
+        ], 
+         "responses": {
+          "200": {
+            "description": "Successfully"
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        },
+
+  "security": [
+          {
+            "basicAuth": ["Username: ", "Password: "]
+          }
+        ]
+
+      }
+    },
+    "/screen/updateScreen": {
+      "put": {
+        "deprecated": false,
+        "tags": [
+          "Screen"
+        ],
+        "description": "Operations on Cinema ",
+        "consumes": [
+          "application/x-www-form-urlencoded"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "AccessToken",
+            "in": "header",
+            "description": "Current Session's AccessToken",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "screenId",
+            "in": "query",
+            "description": "screenid",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "name",
+            "in": "formData",
+            "description": "Screen Name ",
+            "type": "string"
+          },
+          {
+            "name": "screenNo",
+            "in": "formData",
+            "description": "screen Number",
+            "type": "string"
+          },
+          {
+            "name": "noOfSeats",
+            "in": "formData",
+            "description": "No of Seats for a screen",
+            "type": "string"
+          } ,
+          {
+            "name": "cinemaId",
+            "in": "formData",
+            "description": "No of Seats for a screen",
+            "type": "string"
+          } ,
+          {
+            "name": "movieId",
+            "in": "formData",
+            "description": "Movie running on screen",
+            "type": "string"
+          } 
+
+        ], 
+         "responses": {
+          "200": {
+            "description": "Successfully"
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        },
+
+  "security": [
+          {
+            "basicAuth": ["Username: ", "Password: "]
+          }
+        ]
+
+      }
+    },
+    "/booking/addTicketBooking": {
+      "post": {
+        "deprecated": false,
+        "tags": [
+          "Booking"
+        ],
+        "description": "Operations on Booking ",
+        "consumes": [
+          "application/x-www-form-urlencoded"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "AccessToken",
+            "in": "header",
+            "description": "Current Session's AccessToken",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "screenId",
+            "in": "formData",
+            "description": "screenid",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "price",
+            "in": "formData",
+            "description": "ticket price ",
+            "type": "integer"
+          },
+          {
+            "name": "seatNo",
+            "in": "formData",
+            "description": "Seat Number format [ '1' ,'2'] use double quotes instead of single quotes",
+            "type": "String"
+          }
+
+        ], 
+         "responses": {
+          "200": {
+            "description": "Successfully"
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        },
+
+  "security": [
+          {
+            "basicAuth": ["Username: ", "Password: "]
+          }
+        ]
+
+      }
+    },
+    "/booking/getTicketBooking": {
+      "get": {
+        "deprecated": false,
+        "tags": [
+          "Booking"
+        ],
+        "description": "Operations on Booking ",
+        "consumes": [
+          "application/x-www-form-urlencoded"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "AccessToken",
+            "in": "header",
+            "description": "Current Session's AccessToken",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "ticketId",
+            "in": "query",
+            "description": "ticket id ",
+            "required": true,
+            "type": "string"
+          }
+        ], 
+         "responses": {
+          "200": {
+            "description": "Successfully"
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        },
+
+  "security": [
+          {
+            "basicAuth": ["Username: ", "Password: "]
+          }
+        ]
+
+      }
+    }
+
+
+
+
+
+
+
+    
+    
+    
+    
+  },
+  
+  "securityDefinitions": {
+    "basicAuth": {
+      "type": "basic"
+    }
+  }
+}
